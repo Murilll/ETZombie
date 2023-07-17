@@ -6,13 +6,17 @@ public class Person1
 {
     FlowLayoutPanel panel;
 
+    int life = 20;
+    int movespeed = 5;
+
+
+
     int x;
     int y;
     bool goLeft = false;
     bool goRight = false;
     bool goTop = false;
     bool goDown = false;
-    int playerspeed = 5;
 
 
 
@@ -68,13 +72,13 @@ public class Person1
     public void movement()
     {
         if (goLeft)
-            x -= playerspeed;
+            x -= movespeed;
         if (goRight)
-            x += playerspeed;
+            x += movespeed;
         if (goTop)
-            y -= playerspeed;
+            y -= movespeed;
         if (goDown)
-            y += playerspeed;
+            y += movespeed;
 
         panel.Location = new Point(x, y);
 

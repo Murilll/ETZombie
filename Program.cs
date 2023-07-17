@@ -9,7 +9,7 @@ var form = new Form();
 form.WindowState = FormWindowState.Maximized;
 form.FormBorderStyle = FormBorderStyle.None;
 
-var per1 = new Person1(form);
+var zombieMain = new Person1(form);
 
 // Create rectangle for displaying image.
 
@@ -20,17 +20,16 @@ timer.Interval = 15;
 
 form.KeyDown += (s, e) =>
 {
-    per1.go(e);
+    zombieMain.go(e);
 };
 form.KeyUp += (s, e) =>
 {
-    per1.stop(e);
+    zombieMain.stop(e);
 };
 timer.Tick += delegate
 {
-    per1.movement();
+    zombieMain.movement();
 };
-
 
 
 
