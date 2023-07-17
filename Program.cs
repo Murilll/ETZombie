@@ -9,7 +9,9 @@ var form = new Form();
 form.WindowState = FormWindowState.Maximized;
 form.FormBorderStyle = FormBorderStyle.None;
 
-var zombieMain = new Person1(form);
+var zombieMain = new ZombieMain(form);
+
+var zombie = new Zombie(form);
 
 // Create rectangle for displaying image.
 
@@ -29,6 +31,7 @@ form.KeyUp += (s, e) =>
 timer.Tick += delegate
 {
     zombieMain.movement();
+    zombie.go(zombieMain.x,zombieMain.y,zombieMain.movespeed - 2);
 };
 
 

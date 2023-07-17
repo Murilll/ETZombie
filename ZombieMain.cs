@@ -2,17 +2,17 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-public class Person1
+public class ZombieMain
 {
     FlowLayoutPanel panel;
 
     int life = 20;
-    int movespeed = 5;
+    public int movespeed = 5;
 
 
 
-    int x;
-    int y;
+    public int x;
+    public int y;
     bool goLeft = false;
     bool goRight = false;
     bool goTop = false;
@@ -20,7 +20,7 @@ public class Person1
 
 
 
-    public Person1(Form form)
+    public ZombieMain(Form form)
     {
         panel = new FlowLayoutPanel()
         {
