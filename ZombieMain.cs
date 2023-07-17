@@ -7,7 +7,7 @@ public class ZombieMain
     FlowLayoutPanel panel;
 
     int life = 20;
-    public int movespeed = 5;
+    public int movespeed = 3;
 
 
 
@@ -26,8 +26,8 @@ public class ZombieMain
         {
             ForeColor = Color.DarkBlue,
             BackColor = Color.Coral,
-            Height = 40,
-            Width = 40
+            Height = 20,
+            Width = 20
         };
 
         form.Controls.Add(panel);

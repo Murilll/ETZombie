@@ -31,7 +31,7 @@ form.KeyUp += (s, e) =>
 timer.Tick += delegate
 {
     zombieMain.movement();
-    zombie.go(zombieMain.x,zombieMain.y,zombieMain.movespeed - 2);
+    zombie.go(zombieMain.x,zombieMain.y,zombieMain.movespeed - 1);
 };
 
 
