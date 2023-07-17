@@ -2,98 +2,90 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-
-ApplicationConfiguration.Initialize();
-
-
-var form = new Form();
-form.WindowState = FormWindowState.Maximized;
-form.FormBorderStyle = FormBorderStyle.None;
-
-
-FlowLayoutPanel panel = new FlowLayoutPanel();
-form.Controls.Add(panel);
-panel.ForeColor = Color.DarkBlue;
-panel.BackColor = Color.LightBlue;
-panel.BackColor = Color.Coral;
-panel.Height = 40;
-panel.Width = 40;
-
-
-
-// Create rectangle for displaying image.
-
-var timer = new Timer();
-timer.Interval = 15;
-
-
-var x = panel.Location.X;
-var y = panel.Location.Y;
-var goLeft = false;
-var goRight = false;
-var goTop = false;
-var goDown = false;
-var playerspeed = 5;
-
-
-timer.Tick += delegate
+public class Person1
 {
-    if(goLeft)
-        x -= playerspeed;
-    if(goRight)
-        x += playerspeed;
-    if(goTop)
-        y -= playerspeed;
-    if(goDown)
-        y += playerspeed;
+    FlowLayoutPanel panel;
 
-
-    panel.Location = new Point(x, y);
-};
+    int x;
+    int y;
+    bool goLeft = false;
+    bool goRight = false;
+    bool goTop = false;
+    bool goDown = false;
+    int playerspeed = 5;
 
 
 
-form.KeyDown += (s, e) =>
-{
-    if (e.KeyCode == Keys.Escape)
-        Application.Exit();
+    public Person1(Form form)
+    {
+        panel = new FlowLayoutPanel()
+        {
+            ForeColor = Color.DarkBlue,
+            BackColor = Color.Coral,
+            Height = 40,
+            Width = 40
+        };
 
-    if (e.KeyCode == Keys.D)
-        goRight = true;
+        form.Controls.Add(panel);
 
-    if (e.KeyCode == Keys.A)
-        goLeft = true;
+        x = panel.Location.X;
+        y = panel.Location.Y;
+    }
 
-    if (e.KeyCode == Keys.S)
-        goDown = true;
+    public void go(KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Escape)
+            Application.Exit();
 
-    if (e.KeyCode == Keys.W)
-        goTop = true;
-};
+        if (e.KeyCode == Keys.D)
+            goRight = true;
 
-form.KeyUp += (s, e) =>
-{
-    if (e.KeyCode == Keys.D)
-        goRight = false;
+        if (e.KeyCode == Keys.A)
+            goLeft = true;
 
-    if (e.KeyCode == Keys.A)
-        goLeft = false;
+        if (e.KeyCode == Keys.S)
+            goDown = true;
 
-    if (e.KeyCode == Keys.S)
-        goDown = false;
+        if (e.KeyCode == Keys.W)
+            goTop = true;
+    }
 
-    if (e.KeyCode == Keys.W)
-        goTop = false;
-};
+    public void stop(KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.D)
+            goRight = false;
+
+        if (e.KeyCode == Keys.A)
+            goLeft = false;
+
+        if (e.KeyCode == Keys.S)
+            goDown = false;
+
+        if (e.KeyCode == Keys.W)
+            goTop = false;
+    }
+
+    public void movement()
+    {
+        if (goLeft)
+            x -= playerspeed;
+        if (goRight)
+            x += playerspeed;
+        if (goTop)
+            y -= playerspeed;
+        if (goDown)
+            y += playerspeed;
+
+        panel.Location = new Point(x, y);
+
+    }
+}
 
 
 
-form.Load += delegate
-{
-    form.Show();
-    timer.Start();
-};
 
-form.KeyPreview = true;
 
-Application.Run(form);
+
+
+
+
