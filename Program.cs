@@ -11,6 +11,8 @@ form.FormBorderStyle = FormBorderStyle.None;
 
 var per1 = new Person1(form);
 
+var zombie = new Zombie(form);
+
 // Create rectangle for displaying image.
 
 var timer = new Timer();
@@ -29,6 +31,7 @@ form.KeyUp += (s, e) =>
 timer.Tick += delegate
 {
     per1.movement();
+    zombie.go(0,0);
 };
 
 
