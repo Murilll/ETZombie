@@ -7,8 +7,8 @@ public class Zombie
 {
     FlowLayoutPanel panel;
     Random numberRandom = new Random();
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     public Zombie(Form form)
     {

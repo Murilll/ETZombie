@@ -5,53 +5,47 @@ using System.Collections.Generic;
 
 public class Human
 {
-    FlowLayoutPanel panel;
+    Rectangle human;
     Random numberRandom = new Random();
     int x;
     int y;
+    int maxSpeed = 10;
+    double direcaoX;
+    double direcaoY;
+    int pointOfView = 300;
+    double range;
+    double d;
 
-    public Human(Form form)
+    public Human(Form form, SolidBrush mybrush)
+        => human = new Rectangle(0, 0, 20, 20); 
+
+    public void escape(int zombieX, int zombieY)
     {
-        panel = new FlowLayoutPanel()
+        x = human.Location.X;
+        y = human.Location.Y;
+
+        d = Math.Pow((x - zombieX), 2) + Math.Pow((y - zombieY),2);
+
+        range = Math.Sqrt(d);
+
+        if (range <= pointOfView)
         {
-            BackColor = Color.Green,
-            Location = new Point(numberRandom.Next(0, 1200), numberRandom.Next(0, 1200)),
-            Width = numberRandom.Next(30, 100),
-            Height = numberRandom.Next(30, 100)
-        };
+            direcaoX = (x - zombieX)*-1;
+            direcaoY = (y - zombieY)*-1;
 
-        form.Controls.Add(panel);
+            double pita = Math.Sqrt(direcaoX * direcaoX + direcaoY * direcaoY);
+            
+            x -= (int)direcaoX / (int)pita * maxSpeed;
+            y -= (int)direcaoY / (int)pita * maxSpeed;
+             
+        }
 
-        x = panel.Location.X;
-        y = panel.Location.Y;
+        human.Location = new Point(x, y);
     }
 
-    public void go(int PositionPlayerX, int PositionPlayerY, int zombieSpeed)
+    public void draw(Form form, Graphics g, SolidBrush color)
     {
-        if (x <= PositionPlayerX && y <= PositionPlayerY)
-        {
-            x += zombieSpeed;
-            y += zombieSpeed;
-        }
-
-        if (x >= PositionPlayerX && y <= PositionPlayerY)
-        {
-            x -= zombieSpeed;
-            y += zombieSpeed;
-        }
-
-        if (x <= PositionPlayerX && y >= PositionPlayerY)
-        {
-            x += zombieSpeed;
-            y -= zombieSpeed;
-        }
-
-        if (x >= PositionPlayerX && y >= PositionPlayerY)
-        {
-            x -= zombieSpeed;
-            y -= zombieSpeed;
-        }
-        
-        panel.Location = new Point(x, y);
+        var human = new Human(form, color);
+        g.FillRectangle(Brushes.Red, new Rectangle(x, y, 20, 20)); 
     }
 }

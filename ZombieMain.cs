@@ -1,16 +1,14 @@
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 public class ZombieMain
 {
-    FlowLayoutPanel panel;
 
+    Rectangle zombie;
     int life = 20;
     public int movespeed = 3;
-
-
-
+    public int attackDamage = 5;
     public int x;
     public int y;
     bool goLeft = false;
@@ -20,27 +18,13 @@ public class ZombieMain
 
 
 
-    public ZombieMain(Form form)
+    public ZombieMain(Form form, SolidBrush mybrush)
     {
-        panel = new FlowLayoutPanel()
-        {
-            ForeColor = Color.DarkBlue,
-            BackColor = Color.Coral,
-            Height = 20,
-            Width = 20
-        };
-
-        form.Controls.Add(panel);
-
-        x = panel.Location.X;
-        y = panel.Location.Y;
+        zombie = new Rectangle(0, 0, 20, 20);
     }
 
     public void go(KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.Escape)
-            Application.Exit();
-
         if (e.KeyCode == Keys.D)
             goRight = true;
 
@@ -80,8 +64,15 @@ public class ZombieMain
         if (goDown)
             y += movespeed;
 
-        panel.Location = new Point(x, y);
+        zombie.Location = new Point(x, y);
 
+    }
+
+
+    public void draw(Form form, Graphics g, SolidBrush color)
+    {
+        var zombieMain = new ZombieMain(form, color);
+        g.FillRectangle(Brushes.Red, new Rectangle(x, y, 20, 20));
     }
 }
 
