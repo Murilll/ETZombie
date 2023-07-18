@@ -16,8 +16,8 @@ public class Zombie
         {
             BackColor = Color.Green,
             Location = new Point(numberRandom.Next(0, 1200), numberRandom.Next(0, 1200)),
-            Width = numberRandom.Next(30, 100),
-            Height = numberRandom.Next(30, 100)
+            Width = numberRandom.Next(20, 25),
+            Height = numberRandom.Next(20, 30)
         };
 
         form.Controls.Add(panel);
